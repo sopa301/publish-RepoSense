@@ -1,8 +1,8 @@
-Feb 03, 2025 8:55:21 AM reposense.system.LogsManager addFileHandler
+Feb 03, 2025 8:56:45 AM reposense.system.LogsManager addFileHandler
 INFO: Log temp folder has been successfully created
-Feb 03, 2025 8:55:21 AM reposense.parser.ArgsParser parse
+Feb 03, 2025 8:56:45 AM reposense.parser.ArgsParser parse
 INFO: Config path not provided, using the config folder as default.
-Feb 03, 2025 8:55:21 AM reposense.RepoSense main
+Feb 03, 2025 8:56:45 AM reposense.RepoSense main
 WARNING: Csv file does not exist at the given path.
 Use '-help' to list all the available subcommands and some concept guides.
 java.io.FileNotFoundException: Csv file does not exist at the given path.
