@@ -151,6 +151,10 @@ if __name__ == "__main__":
         handle_specific_commit(args.commit)
         exit()
 
+    if args.branch:
+        handle_specific_branch(args.branch)
+        exit()
+
     if args.master:
         clone_and_make_reposense()
         exit()
