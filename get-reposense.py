@@ -24,7 +24,7 @@ def parse_args():
     return parser.parse_args()
 
 def handle_specific_commit(commit):
-    get_reposense_jar('https://api.github.com/repos/joeng03/RepoSense/commits/' + commit, commit=commit)
+    get_reposense_jar('https://api.github.com/repos/sopa301/RepoSense/commits/' + commit, commit=commit)
 
 def handle_specific_release(tag):
     get_reposense_jar('https://api.github.com/repos/reposense/RepoSense/releases/tags/' + tag, tag=tag)
@@ -65,7 +65,7 @@ def clone_and_make_reposense(tag=None, commit=None, branch=None):
 
     command = \
     '''
-    git clone 'https://github.com/joeng03/RepoSense.git' &&
+    git clone 'https://github.com/sopa301/RepoSense.git' &&
     cd RepoSense &&
     '''
 
