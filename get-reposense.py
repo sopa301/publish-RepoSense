@@ -18,6 +18,7 @@ def parse_args():
     group.add_argument('-t', '--tag', help='Get RepoSense.jar of a specific release version tag')
     group.add_argument('-l', '--latest', help='Get RepoSense.jar of the latest release of a specific version tag')
     group.add_argument('-c', '--commit', help='Get RepoSense.jar of a specific commit')
+    group.add_argument('-b', '--branch', help='Get RepoSense.jar from a specific branch')
 
     parser.add_argument('-o', '--overwrite', action='store_true', help='Overwrite RepoSense.jar file, if exists. Default: false')
 
@@ -50,6 +51,35 @@ def handle_specific_release(tag):
 
 def handle_latest_release():
     get_reposense_jar('https://api.github.com/repos/reposense/RepoSense/releases/latest')
+
+def handle_specific_branch(branch):
+    clone_and_make_reposense(branch=branch)
+
+def clone_and_make_reposense(tag=None, commit=None, branch=None):
+
+    # Cleanup cached RepoSense folder
+    shutil.rmtree('RepoSense', ignore_errors=True)
+
+    command = \
+    '''
+    git clone 'https://github.com/joeng03/RepoSense.git' &&
+    cd RepoSense &&
+    '''
+
+    if branch:
+        command += f'git checkout {branch} &&'
+    elif tag:
+        command += f'git checkout tags/{tag} -b deploy &&'
+    elif commit:
+        command += f'git checkout {commit} -b deploy &&'
+
+    command += \
+    '''
+    ./gradlew zipreport shadowjar &&
+    mv build/jar/RepoSense.jar ../
+    '''
+
+    subprocess.check_call(command, shell=True)
 
 def get_reposense_jar(url, tag=None, commit=None):
     response = requests.get(url)
