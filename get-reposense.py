@@ -103,31 +103,7 @@ def get_reposense_jar(url, tag=None, commit=None):
 
     url = response.json()['assets'][0]['browser_download_url']
     download_file(url)
-
-def clone_and_make_reposense(tag=None, commit=None):
-
-    # Cleanup cached RepoSense folder
-    shutil.rmtree('RepoSense', ignore_errors=True)
-
-    command = \
-    '''
-    git clone 'https://github.com/reposense/RepoSense.git' &&
-    cd RepoSense &&
-    '''
-
-    if tag:
-        command += 'git checkout tags/{} -b deploy &&'.format(tag)
-    elif commit:
-        command +=  'git checkout {} -b deploy &&'.format(commit)
-
-    command += \
-    '''
-    ./gradlew zipreport shadowjar &&
-    mv build/jar/RepoSense.jar ../
-    '''
-
-    subprocess.check_call(command, shell=True)
-
+    
 def download_file(url):
     response = requests.get(url, allow_redirects=True)
     open(JAR_FILENAME, 'wb').write(response.content)
