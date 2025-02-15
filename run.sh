@@ -9,7 +9,7 @@
 ### ./get-reposense.py --commit abc123         # Gets a specific commit
 ### ./get-reposense.py --release --overwrite   # Overwrite RepoSense.jar, if exists, with the latest release
 
-./get-reposense.py --branch fix-local-report-404
+./get-reposense.py --branch test
 
 # Executes RepoSense
 # Do not change the default output folder name (reposense-report)
